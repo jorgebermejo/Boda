@@ -3,7 +3,7 @@ var multer    =   require( 'multer' );
 var upload    =   multer( { dest: 'uploads/' } );
 var sizeOf    =   require( 'image-size' );
 var exphbs    =   require( 'express-handlebars' );
-var uploadController = require("./controllers/upload_controller");
+//var uploadController = require("./controllers/upload_controller");
 
 require( 'string.prototype.startswith' );
 
