@@ -324,6 +324,19 @@ app.get( '/uploadgoogle', upload.single( 'file' ), function( req, res, next ) {
   return res.status( 200 ).send( req.file );
 });*/
 
-app.listen( 8080, function() {
+app.set('port', process.env.PORT || 3000);
+
+app.listen( app.get('port'), function() {
   console.log( 'Express server listening on port 8080' );
 });
+
+/*
+var server = app.listen(app.get('port'), function() {
+  debug('Express server listening on port ' + server.address().port);
+});
+
+var serverSecure = https.createServer(options, app);
+serverSecure.listen(8443, function() {
+  debug('Express server listening on port ' + server.address().port);
+});*/
+
