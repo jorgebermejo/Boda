@@ -28,35 +28,54 @@
 
     <script type="text/javascript" src="/dropzone/dist/dropzone.js"></script>
     <script type="text/javascript">
+   
       Dropzone.options.uploadWidget = {
         paramName: 'file',
-        maxFilesize: 2, // MB
-        maxFiles: 1,
-        dictDefaultMessage: 'Drag an image here to upload, or click to select one',
+        maxFilesize: 5000, // MB
+        maxFiles: 5000,
+        dictDefaultMessage: 'Drag an image here to upload, or click to select one !!!',
         headers: {
           'x-csrf-token': document.querySelectorAll('meta[name=csrf-token]')[0].getAttributeNode('content').value,
         },
-        acceptedFiles: 'image/*',
+        //acceptedFiles: 'image/*',
+       // acceptedFiles: 'application/pdf',
         init: function() {
+         
           this.on('success', function( file, resp ){
+
             console.log( file );
             console.log( resp );
           });
-          this.on('thumbnail', function(file) {
+        
+          /*this.on('thumbnail', function(file) {
             if ( file.width < 640 || file.height < 480 ) {
               file.rejectDimensions();
             } else {
               file.acceptDimensions();
             }
-          });
+          });*/
         },
-        accept: function(file, done) {
+        /*accept: function(file, done) {
           file.acceptDimensions = done;
           file.rejectDimensions = function() {
             done('The image must be at least 640 x 480px')
           };
-        }
+        }*/
       };
     </script>
+    <p>
+     <div>
+        <!--<form id="uploadgoogle" method="get" action="/uploadgoogle" class="none">
+          <div class="fallback">
+            <input name="nada" value="Nada" />
+          </div>-->
+          <nav class="main" id="n1" role="navigation">
+    <span><a href="/">Inicio</a></span>
+    <span><a href="/uploadgoogle"><button type="button">Upload</button></a></span>
+     <span><a href="https://drive.google.com/folderview?id=0B6hXLRUckkIFOHVnNzBqT0hWMzQ&usp=sharing" target="_blank">Ver</a></span>
+  </nav>
+        </form>
+      </div>
+    </p>
   </body>
 </html>

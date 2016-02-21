@@ -1,0 +1,54 @@
+*                    { margin: 0; padding: 0; }
+body                 { font: 16px Georgia, serif;  
+/*background-image: url("images/Calendario.png");*/
+background-image: url("images/fondo.png");
+background-size:     cover;                      /* <------ */
+    background-repeat:   no-repeat;
+    background-position:  center center;              /* optional, center the image */
+     background-attachment: fixed;
+       background-color: #464646;
+}
+
+#page-wrap           { margin: 0% auto; /*color: white;*/ opacity: 0.6; }
+#page-wrap > .main   { border: 0.5px solid #999; padding: 0.1%; 
+	                   margin-bottom: 0.10px; /*color: black;*/
+                        font-family: 'Great Vibes', cursive;
+                       
+                         font-weight: bold;
+}
+
+#title             { font-size: 50px; color: #990000;}
+	                       
+#uploader         {  position:absolute;
+   bottom:2.5%;
+   width:100%;
+}
+
+#inside             { font-family: 'Great Vibes', cursive; font-size: 50px; color: #990000;}
+/*section > div        { padding: 0.20px; }*/
+header, nav, section { background: #eee; text-align: center;}
+
+/*footer               { background: #eee; text-align: center;}*/
+nav span             { margin: 0px 30px 0px 0px;  font-size: 30px;  letter-spacing: 2px; color:black;}
+/* unvisited link */
+a:link {
+    color: black;
+}
+
+/* visited link */
+a:visited {
+    color: black;
+}
+
+/* mouse over link */
+a:hover {
+    color: #990000;
+}
+
+/* selected link */
+a:active {
+    color: blue;
+}
+/*
+#ErrorMsgs           { color: #f61; font-size: smaler;}
+.right 				 {float: right;} */
