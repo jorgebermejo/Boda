@@ -13,3 +13,4 @@ Full details will be in the article, but here's a quickstart:
 5. Run `bower install`
 6. Run the app with `node index.js`
 7. The app will run on port 8080
+# Boda
