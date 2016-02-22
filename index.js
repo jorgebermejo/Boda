@@ -32,8 +32,11 @@ var googleAuth = require('google-auth-library');
 //**********************************
 var SCOPES = ['https://www.googleapis.com/auth/drive'];
 //**********************************
-var TOKEN_DIR = (process.env.HOME || process.env.HOMEPATH ||
-    process.env.USERPROFILE) + '/.credentials/';
+/*var TOKEN_DIR = (process.env.HOME || process.env.HOMEPATH ||
+    process.env.USERPROFILE) + '/.credentials/';*/
+    
+    
+var TOKEN_DIR = './Credentials/.credentials/';
 var TOKEN_PATH = TOKEN_DIR + 'drive-nodejs-quickstart.json';
 
 console.log(TOKEN_PATH);
