@@ -36,7 +36,7 @@ var TOKEN_DIR = (process.env.HOME || process.env.HOMEPATH ||
     process.env.USERPROFILE) + '/.credentials/';
 var TOKEN_PATH = TOKEN_DIR + 'drive-nodejs-quickstart.json';
 
-
+console.log(TOKEN_PATH);
 // Get /login   -- Formulario de login
 //exports.new = function(req, res) {
   
@@ -63,7 +63,7 @@ fs.readFile('client_secret.json', function processClientSecrets(err, content) {
 function authorize(credentials, callback) {
   var clientSecret = credentials.installed.client_secret;
   var clientId = credentials.installed.client_id;
-  var redirectUrl = credentials.installed.redirect_uris[0];
+  var redirectUrl = credentials.installed.redirect_uris[1];
   var auth = new googleAuth();
   var oauth2Client = new auth.OAuth2(clientId, clientSecret, redirectUrl);
  /* var clientSecret = 'e8TVUMbIRnk08qze1p0rea5K';
@@ -97,11 +97,13 @@ function getNewToken(oauth2Client, callback) {
     access_type: 'offline',
     scope: SCOPES
   });
-  console.log('Authorize this app by visiting this url: ', authUrl);
+ console.log('Authorize this app by visiting this url: ', authUrl);
   var rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
   });
+  
+  
   rl.question('Enter the code from that page here: ', function(code) {
     rl.close();
     oauth2Client.getToken(code, function(err, token) {
@@ -299,6 +301,13 @@ app.get( '/uploadgoogle', function( req, res, next ){
   
   
   return res.render( 'photos' );
+});
+
+
+app.get( '/autho', function( req, res, next ){
+  
+  
+  return res.render( 'autho' );
 });
 
 /*
