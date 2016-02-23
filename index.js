@@ -3,6 +3,7 @@ var multer    =   require( 'multer' );
 var upload    =   multer( { dest: 'uploads/' } );
 var sizeOf    =   require( 'image-size' );
 var exphbs    =   require( 'express-handlebars' );
+var commentController = require('./controllers/comment_controller');
 //var uploadController = require("./controllers/upload_controller");
 
 require( 'string.prototype.startswith' );
@@ -305,7 +306,19 @@ app.get( '/uploadgoogle', function( req, res, next ){
   
   return res.render( 'photos' );
 });
+/*app.get('/comentarios', function( req, res, next ){
+  var fs = require("fs");
+  var file = "test.db";
+  var exists = fs.existsSync(file);
+  var sqlite3 = require("sqlite3").verbose();
+  var db = new sqlite3.Database(file);
+  
+  
+  
+  return res.render( 'comments' );
+});*/
 
+app.get('/comentarios', commentController.new);
 
 app.get( '/autho', function( req, res, next ){
   
