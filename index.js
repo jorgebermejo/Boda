@@ -3,6 +3,7 @@ var multer    =   require( 'multer' );
 var upload    =   multer( { dest: 'uploads/' } );
 var sizeOf    =   require( 'image-size' );
 var exphbs    =   require( 'express-handlebars' );
+
 var commentController = require('./controllers/comment_controller');
 //var uploadController = require("./controllers/upload_controller");
 

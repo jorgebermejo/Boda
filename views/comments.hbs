@@ -32,12 +32,22 @@
       
       </div>
       Añadir comentario: <p>
+        
 
 <form method="post" action="/comentarios" >      
   <input type="text" id="comment" name="comment[texto]" value=""/> <p>
   <button type="submit">Enviar</button>
 </form>
       
+      <p>
+        Comentario1:<p>
+           Nombre: {{comment.[0].nombre }}
+            Comentario: {{ comment.[0].comentario }}
+            CreatedAt: {{comment.[0].createdAt}}
+            Dia: {{comment.[0].dia}}
+            Hora: {{comment.[0].hora}}
+       </p>
+      </p>
       
       
    <div id="uploader">

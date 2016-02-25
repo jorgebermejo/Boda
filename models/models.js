@@ -28,7 +28,24 @@ var sequelize = new Sequelize(DB_name, user, pwd,
 // Importar definicion de la tabla Comment
 var comment_path = path.join(__dirname,'comments');
 var Comment = sequelize.import(comment_path);
-
+var date = new Date(); 
+//var dia_format = date.getDay() + "-" + date.getMonth() +  "-" + date.getFullYear();
+var month = new Array();
+month[0] = "Enero";
+month[1] = "Febrero";
+month[2] = "Marzo";
+month[3] = "Abril";
+month[4] = "Mayo";
+month[5] = "Junio";
+month[6] = "Julio";
+month[7] = "Agosto";
+month[8] = "Septiembre";
+month[9] = "Octubre";
+month[10] = "Noviembre";
+month[11] = "Diciembre";
+var month_name = month[date.getMonth()];
+var dia_format = date.getDate()+ " de " + month_name + " de " + date.getFullYear(); ;
+var hora_format = date.getHours()+ ":" + date.getMinutes();
 exports.Comment = Comment; // exportar definición de tabla Quiz
 
 // sequelize.sync() crea e inicializa tabla de preguntas en DB
@@ -37,7 +54,9 @@ sequelize.sync().then(function() {
   Comment.count().then(function (count){
     if(count === 0) {   // la tabla se inicializa solo si está vacía
       Comment.create({ nombre: 'Pepe',
-      	            comentario: 'Primer comentario'
+      	            comentario: 'Primer comentario',
+      	            dia: dia_format,
+      	            hora: hora_format
       	         })
       .then(function(){console.log('Base de datos inicializada')});
     };
