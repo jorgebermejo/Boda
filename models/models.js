@@ -45,7 +45,7 @@ month[10] = "Noviembre";
 month[11] = "Diciembre";
 var month_name = month[date.getMonth()];
 var dia_format = date.getDate()+ " de " + month_name + " de " + date.getFullYear(); ;
-var hora_format = date.getHours()+ ":" + date.getMinutes();
+var hora_format = (("0"+date.getHours()).slice(-2))+ ":" + (("0"+date.getMinutes()).slice(-2));
 exports.Comment = Comment; // exportar definición de tabla Quiz
 
 // sequelize.sync() crea e inicializa tabla de preguntas en DB
@@ -55,6 +55,11 @@ sequelize.sync().then(function() {
     if(count === 0) {   // la tabla se inicializa solo si está vacía
       Comment.create({ nombre: 'Pepe',
       	            comentario: 'Primer comentario',
+      	            dia: dia_format,
+      	            hora: hora_format
+      	         });
+      Comment.create({ nombre: 'Juan',
+      	            comentario: 'Segundo comentario',
       	            dia: dia_format,
       	            hora: hora_format
       	         })

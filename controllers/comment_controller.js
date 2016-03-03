@@ -1,8 +1,8 @@
 var models = require('../models/models.js');
 
 exports.show = function (req,res) {
-  models.Comment.find(req.params.commentId).then(function(comment) {
-    res.render('quizes/show', {comment: comment});
+   models.Comment.findAll().then(function(comment) {
+     res.render('../views/comments', {comment: comment});
   })
 }
 
@@ -19,9 +19,19 @@ exports.comments = function(req, res) {
 };*/
 
 exports.new = function(req, res) {
-  models.Comment.findAll().then(function(comment) {
-     res.render('../views/comments', {comment: comment});
+  var obj = {};
+	console.log('body: ' + JSON.stringify(req.body));
+	console.log('NOmbre: '+JSON.stringify(req.body.nombre));
+var comment=models.Comment.build(req.body);
+  
+  comment.save({fields: ["nombre","comentario","dia","hora"]}).then(function(){
+    res.render('../views/comments', {comment: comment});
   })
+  
+	
+ /* models.Comment.findAll().then(function(comment) {
+     res.render('../views/comments', {comment: comment});
+  })*/
 };
 
 

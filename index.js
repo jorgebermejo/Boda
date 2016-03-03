@@ -3,6 +3,8 @@ var multer    =   require( 'multer' );
 var upload    =   multer( { dest: 'uploads/' } );
 var sizeOf    =   require( 'image-size' );
 var exphbs    =   require( 'express-handlebars' );
+var $ = require('jquery');
+var bodyParser = require('body-parser');
 
 var commentController = require('./controllers/comment_controller');
 //var uploadController = require("./controllers/upload_controller");
@@ -12,6 +14,11 @@ require( 'string.prototype.startswith' );
 var app = express();
 
 app.use( express.static( __dirname + '/bower_components' ) );
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
+
+
 
 app.engine( '.hbs', exphbs( { extname: '.hbs' } ) );
 app.set('view engine', '.hbs');
@@ -319,7 +326,14 @@ app.get( '/uploadgoogle', function( req, res, next ){
   return res.render( 'comments' );
 });*/
 
-app.get('/comentarios', commentController.new);
+app.get('/comentarios', commentController.show);
+app.post('/comentarios/create', commentController.new);
+
+/*app.post('/comentarios/create', function(req, res){
+	var obj = {};
+	console.log('body: ' + JSON.stringify(req.body));
+	res.send(req.body);
+});*/
 
 app.get( '/autho', function( req, res, next ){
   

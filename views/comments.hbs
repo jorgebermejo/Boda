@@ -17,59 +17,79 @@
         href='/stylesheets/smartphone.css' />
         <meta name="csrf-token" content="XYZ123">
         <link href='https://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+       <!-- <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.8.6.min.js"></script>-->
+       
+</head>
+        
+        
   </head>
   <body>
     <div id="page-wrap">
-  <header class="main" id="title">
-    Boda de Jorge y Cristina
-  </header>
-
-  <nav class="main" id="n1" role="navigation">
-    <span><a href="/">Inicio</a></span>
-    <span><a href="https://drive.google.com/folderview?id=0B6hXLRUckkIFOHVnNzBqT0hWMzQ&usp=sharing" target="_blank">Galeria de fotos</a></span>
-    <span><a href="/comentarios">Comentarios</a></span>
-  </nav>
+        <header class="main" id="title">
+          Boda de Jorge y Cristina
+        </header>
       
+        <nav class="main" id="n1" role="navigation">
+          <span><a href="/">Inicio</a></span>
+          <span><a href="https://drive.google.com/folderview?id=0B6hXLRUckkIFOHVnNzBqT0hWMzQ&usp=sharing" target="_blank">Galeria de fotos</a></span>
+          <span><a href="/comentarios">Comentarios</a></span>
+        </nav>
+            
       </div>
-      Añadir comentario: <p>
+        <h1 id="inside">Añade tu comentario:</h1>
+        <div id="register_form">
+            <form method="post" action="/comentarios/create">
+                    Nombre:<br/>
+                    <input type="text" id="name" name="name" size="20" /><br/><br/>
+                    Comentario:<br/>
+                    <!--<textarea name="comment" id="comment" rows="6" cols="100%"></textarea>-->
+                    <textarea name="comment" id="comment" 	style="width: 35%" rows="6"></textarea>
+                    <br/><br/>
+                    <div style="margin-left: 31%;"><input name="submit" type="submit" value="Enviar" id="enviar-btn" /></div>
+            </form>
+        </div>
+      <div id="newmessage"></div>
+      
         
+            <table>
+                 {{#each comment}}
+                 <div class="readonly_label" id="field-function_purpose">
+                        {{this.nombre}}
+                 </div>
+                 <div class="readonly_label_comment" id="field-function_purpose_comment">
+                        {{this.comentario}}
+                 </div>
+                 <div class="readonly_label_dia" id="field-function_purpose_dia">
+                        {{this.dia}}
+                 </div>
+                 <div class="readonly_label_hora" id="field-function_purpose_hora">
+                        {{this.hora}}
+                 </div>
+                 
+                 
+                  <script type="text/javascript">
+                  
+                     var named = $('#field-function_purpose').text();
+                     var commentario = $('#field-function_purpose_comment').text();
+                     
+                     $('#newmessage').prepend('<div class="comment"><div class="comment-autor"><strong>'+named+'</strong> dice:<br/><small>'+"HORA"+'</small></div><div class="comment-text">'+commentario+'</div></div>');
+                     
+                     $('#field-function_purpose').text("");
+                     $('#field-function_purpose').remove();
+                     $('#field-function_purpose_comment').text("");
+                     $('#field-function_purpose_comment').remove();
+                     $('#field-function_purpose_dia').text("");
+                     $('#field-function_purpose_dia').remove();
+                     $('#field-function_purpose_hora').text("");
+                     $('#field-function_purpose_hora').remove();
+                  </script>
+        
+                {{/each}}
+              </table>
 
-<form method="post" action="/comentarios" >      
-  <input type="text" id="comment" name="comment[texto]" value=""/> <p>
-  <button type="submit">Enviar</button>
-</form>
-      
-      <p>
-        Comentario1:<p>
-           Nombre: {{comment.[0].nombre }}
-            Comentario: {{ comment.[0].comentario }}
-            CreatedAt: {{comment.[0].createdAt}}
-            Dia: {{comment.[0].dia}}
-            Hora: {{comment.[0].hora}}
-       </p>
-      </p>
-      
-      
-   <div id="uploader">
-    <div class="container">
-    <!--  <header>-->
-  
-        <h1 id="inside">Sube tus fotos</h1>
-      <!--</header>-->
-
-      <div>
-        <form id="upload-widget" method="post" action="/upload" class="dropzone">
-          <div class="fallback">
-            <input name="file" type="file" />
-          </div>
-        </form>
-      </div>
- 
-     <!-- <footer style="margin-top:5px;">
-        <p>This demo is designed to accompany <a href="http://www.sitepoint.com/file-upload-form-express-dropzone-js/">this article</a>.</p>
-      </footer>-->
-    </div>
- </div>
     <script type="text/javascript" src="/dropzone/dist/dropzone.js"></script>
     <script type="text/javascript">
     
@@ -110,5 +130,70 @@
         }
       };
     </script>
+     <script type="text/javascript">
+
+$(document).ready(function() {
+console.log( "ready!" );
+ //$('#newmessage').prepend('<div class="comment"><div class="comment-avatar"><img width="48" height="48" src="images/user.png" /></div><div class="comment-autor"><strong>'+"TEST"+'</strong> dice:<br/><small>'+"HORA"+'</small></div><div class="comment-text">'+"COMENTARIO"+'</div></div>');
+
+    $("#enviar-btn").click(function() {
+
+        var name = $("input#name").val();
+        var comment = $("textarea#comment").val();
+        var now = new Date();
+        var date_show = now.getDate() + '-' + now.getMonth() + '-' + now.getFullYear() + ' ' + now.getHours() + ':' + + now.getMinutes() + ':' + + now.getSeconds();
+        var month = new Array();
+          month[0] = "Enero";
+          month[1] = "Febrero";
+          month[2] = "Marzo";
+          month[3] = "Abril";
+          month[4] = "Mayo";
+          month[5] = "Junio";
+          month[6] = "Julio";
+          month[7] = "Agosto";
+          month[8] = "Septiembre";
+          month[9] = "Octubre";
+          month[10] = "Noviembre";
+          month[11] = "Diciembre";
+        var month_name = month[now.getMonth()];
+        var day = now.getDate()+ " de " + month_name + " de " + now.getFullYear();
+        var hour = (("0"+now.getHours()).slice(-2))+ ":" + (("0"+now.getMinutes()).slice(-2));
+        if (name == '') {
+            alert('Debe añadir su nombre.');
+            return false;
+        }
+        
+        if (comment == '') {
+            alert('Debe añadir un comentario.');
+            return false;
+        }
+
+
+        var dataString = 'name=' + name + '&comment=' + comment;
+        var data = {};
+					data.nombre = name;
+					data.comentario = comment;
+					data.dia = day;
+					data.hora = hour;
+//$('#newmessage').append('<div class="comment"><div class="comment-avatar"><img width="48" height="48" src="images/user.png" /></div><div class="comment-autor"><strong>'+name+'</strong> dice:<br/><small>'+date_show+'</small></div><div class="comment-text">'+comment+'</div></div>');
+        $.ajax({
+                type: "POST",
+                url: "/comentarios/create",
+//                data: dataString,
+                data: JSON.stringify(data),
+				        contentType: 'application/json',
+                success: function() {
+                   console.log('success');
+                    $('#newmessage').prepend('<div class="comment"><div class="comment-autor"><strong>'+name+'</strong> dice:<br/><small>'+day+" "+hour+'</small></div><div class="comment-text">'+comment+'</div></div>');
+                    //$('#newmessage').prepend('<div class="comment"><div class="comment-autor"><strong>'+named+'</strong> dice:<br/><small>'+"HORA"+'</small></div><div class="comment-text">'+commentario+'</div></div>');
+                    $("input#name").val("");
+                    $("textarea#comment").val("");
+                }
+        });
+        return false;
+    });
+});
+</script>
+
   </body>
 </html>

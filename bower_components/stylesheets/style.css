@@ -49,6 +49,47 @@ a:hover {
 a:active {
     color: blue;
 }
+
+.comment {
+	/*border: 1px solid #DDDDDD;*/
+
+    box-shadow: 0 2px 5px #666666;
+	border-radius: 8px 8px 8px 8px;
+	list-style: none outside none;
+	margin: 15px 0 10px;
+	padding: 15px;
+	width: 30%;
+}
+.comment-avatar {
+	float: left;
+	padding-left: 10px;
+	padding-top: 10px;
+	position: relative;
+	width: 6%;
+	margin-left: 10px;
+}
+.comment-autor {
+	float: left;
+	margin: 10px 10px 19px;
+	padding-left: 10px;
+	padding-top: 10px;
+	position: relative;
+	width: 74%;
+}
+.comment-text {
+	margin-right: 10px;
+	margin-top: 71px;
+	padding-left: 10px;
+	padding-top: 10px;
+}
+#register_form {
+	box-shadow: 0 2px 5px #666666;
+	border-radius: 8px 8px 8px 8px;
+	list-style: none outside none;
+	margin: 15px 0 10px;
+	padding: 15px;
+}
+
 /*
 #ErrorMsgs           { color: #f61; font-size: smaler;}
 .right 				 {float: right;} */
