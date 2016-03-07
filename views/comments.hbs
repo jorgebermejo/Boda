@@ -39,7 +39,7 @@
         </nav>
             
       </div>
-        <h1 id="inside">Añade tu comentario:</h1>
+        <h1 id="inside">  Añade tu comentario:</h1>
         <div id="register_form">
             <form method="post" action="/comentarios/create">
                     Nombre:<br/>
@@ -73,9 +73,12 @@
                   <script type="text/javascript">
                   
                      var named = $('#field-function_purpose').text();
-                     var commentario = $('#field-function_purpose_comment').text();
+                     var commentario_c = $('#field-function_purpose_comment').text();
+                     var dia = $('#field-function_purpose_dia').text();
+                     var hora = $('#field-function_purpose_hora').text();
+                     var commentario = commentario_c.replace(new RegExp("\n","g"), "<br>");
                      
-                     $('#newmessage').prepend('<div class="comment"><div class="comment-autor"><strong>'+named+'</strong> dice:<br/><small>'+"HORA"+'</small></div><div class="comment-text">'+commentario+'</div></div>');
+                     $('#newmessage').prepend('<div class="comment"><div class="comment-autor"><small>'+dia+" "+hora+'</small><br/><strong>'+named+'</strong> dice:</div><div class="comment-text">'+commentario+'</div></div>');
                      
                      $('#field-function_purpose').text("");
                      $('#field-function_purpose').remove();
@@ -134,12 +137,12 @@
 
 $(document).ready(function() {
 console.log( "ready!" );
- //$('#newmessage').prepend('<div class="comment"><div class="comment-avatar"><img width="48" height="48" src="images/user.png" /></div><div class="comment-autor"><strong>'+"TEST"+'</strong> dice:<br/><small>'+"HORA"+'</small></div><div class="comment-text">'+"COMENTARIO"+'</div></div>');
-
+ 
     $("#enviar-btn").click(function() {
 
         var name = $("input#name").val();
-        var comment = $("textarea#comment").val();
+        var comment= $("textarea#comment").val();
+        var comment_mostrar = comment.replace(new RegExp("\n","g"), "<br>");
         var now = new Date();
         var date_show = now.getDate() + '-' + now.getMonth() + '-' + now.getFullYear() + ' ' + now.getHours() + ':' + + now.getMinutes() + ':' + + now.getSeconds();
         var month = new Array();
@@ -175,7 +178,7 @@ console.log( "ready!" );
 					data.comentario = comment;
 					data.dia = day;
 					data.hora = hour;
-//$('#newmessage').append('<div class="comment"><div class="comment-avatar"><img width="48" height="48" src="images/user.png" /></div><div class="comment-autor"><strong>'+name+'</strong> dice:<br/><small>'+date_show+'</small></div><div class="comment-text">'+comment+'</div></div>');
+
         $.ajax({
                 type: "POST",
                 url: "/comentarios/create",
@@ -184,8 +187,8 @@ console.log( "ready!" );
 				        contentType: 'application/json',
                 success: function() {
                    console.log('success');
-                    $('#newmessage').prepend('<div class="comment"><div class="comment-autor"><strong>'+name+'</strong> dice:<br/><small>'+day+" "+hour+'</small></div><div class="comment-text">'+comment+'</div></div>');
-                    //$('#newmessage').prepend('<div class="comment"><div class="comment-autor"><strong>'+named+'</strong> dice:<br/><small>'+"HORA"+'</small></div><div class="comment-text">'+commentario+'</div></div>');
+                    $('#newmessage').prepend('<div class="comment"><div class="comment-autor"><small>'+day+" "+hour+'</small><br/><strong>'+name+'</strong> dice:</div><div class="comment-text">'+comment_mostrar+'</div></div>');
+                    
                     $("input#name").val("");
                     $("textarea#comment").val("");
                 }

@@ -53,13 +53,8 @@ sequelize.sync().then(function() {
   // success(..) ejecuta el manejador una vez creada la tabla
   Comment.count().then(function (count){
     if(count === 0) {   // la tabla se inicializa solo si está vacía
-      Comment.create({ nombre: 'Pepe',
-      	            comentario: 'Primer comentario',
-      	            dia: dia_format,
-      	            hora: hora_format
-      	         });
-      Comment.create({ nombre: 'Juan',
-      	            comentario: 'Segundo comentario',
+      Comment.create({ nombre: 'Jorge y Cris',
+      	            comentario: 'Hola a todos!! \n Gracias por pasar por aquí y dejar vuestros comentarios.',
       	            dia: dia_format,
       	            hora: hora_format
       	         })
